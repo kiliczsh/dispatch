@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: echo ${{ toJson(github.event) }}
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
@@ -28,7 +28,7 @@ jobs:
         run: npx cowsay "Adiós!
       - name: Report
         if: ${{ github.event.action == 'scan_completed' }}
-        run: echo check out ${{ github.event.client_payload.unit }} ${{ github.event.client_payload.integration }}
+        run: echo check out ${{ toJson(github.event.client_payload) }}
         
         
         
