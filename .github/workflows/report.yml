@@ -5,6 +5,8 @@ on:
     branches: [ main, action ]
   pull_request:
     branches: [ main, action ]
+  repository_dispatch:
+    types: [opened, deleted, scan_completed, completed, hello, bye]
   workflow_dispatch:
 
 jobs:
@@ -18,3 +20,16 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name: Hola
+        if: ${{ github.event.action == 'hello' }}
+        run: npx cowsay "Hola!"
+      - name: Adiós
+        if: ${{ github.event.action == 'bye' }}
+        run: npx cowsay "Adiós!
+      - name: Report
+        if: ${{ github.event.action == 'scan_completed' }}
+        run: echo check out ${{ github.event }}
+        
+        
+        
+        
