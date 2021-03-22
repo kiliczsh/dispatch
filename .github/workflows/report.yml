@@ -28,7 +28,7 @@ jobs:
         run: npx cowsay "Adiós!
       - name: Report
         if: ${{ github.event.action == 'scan_completed' }}
-        run: echo check out ${{ toJson(github.event.client_payload) }}
+        run: echo check out "${{ toJson(github.event.client_payload) }}"
         
         
         
